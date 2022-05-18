@@ -9,7 +9,7 @@ from PyQt5.QtCore import *
 from sqlite3 import *
 from config import *
 
-connect = sqlite3.connect("db.sqlite3")
+connect = sqlite3.connect("data_base.db")
 cursor = connect.cursor()
 
 
@@ -112,9 +112,20 @@ class Example(QWidget):
 
         # self.open_log_file()
 
-    def open_log_file(self):
+    def open_log_file(self, open_code=False):
+        if not open_code:
+            fname = QFileDialog.getOpenFileName(self, 'Выбрать файл', '')[0]
+            cursor.execute(f"""UPDATE config SET val='{fname}' WHERE cfg='already_open';""")
+            print("add")
+        else:
+            fname = cursor.execute(f"""SELECT val FROM config WHERE cfg='already_open'""")
+
         # open_file = QFileDialog.getOpenFileName(self, 'Open file', '/home')
-        fname = QFileDialog.getOpenFileName(self, 'Выбрать файл', '')[0]
+        # if not was_open:
+        #
+        #     print(fname)
+        #     cursor.execute(f"""UPDATE config SET val = '{fname}' WHERE cfg='already_open';""")
+        # else:
         if fname:
             self.output_window.clear()
             with open(fname) as file:
@@ -166,17 +177,44 @@ class ColorFilter(QWidget):
         self.setWindowTitle("Color filter")
         self.setStyleSheet(f"background-color: {self.active_theme['back_ground']}")
 
+        self.border0 = QLabel(self)
+        self.border0.move(65, 49)
+        self.border0.resize(202, 202)
+        self.border0.setStyleSheet(f"background-color: {self.active_theme['border_color']};")
+        self.border0.setStyleSheet(f"border: 1px solid {self.active_theme['border_color']};")
+
+        self.border1 = QLabel(self)
+        self.border1.move(330, 50)
+        self.border1.resize(200, 200)
+        self.border1.setStyleSheet(f"background: {self.active_theme['back_ground']};")
+        self.border1.setStyleSheet(f"border: 1px solid {self.active_theme['border_color']};")
+
+        # self.border2 = QLabel(self)
+        # self.border2.move(320, 50)
+        # self.border2.resize(2, 200)
+        # self.border2.setStyleSheet(f"background-color: {self.active_theme['border_color']};")
+        #
+        # self.border3 = QLabel(self)
+        # self.border3.move(320, 250)
+        # self.border3.resize(200, 2)
+        # self.border3.setStyleSheet(f"background-color: {self.active_theme['border_color']};")
+        #
+        # self.border4 = QLabel(self)
+        # self.border4.move(520, 50)
+        # self.border4.resize(2, 200)
+        # self.border4.setStyleSheet(f"background-color: {self.active_theme['border_color']};")
+
         self.color_list = QTextEdit(self)
-        self.color_list.move(20, 50)
-        self.color_list.resize(50, 20)
+        self.color_list.move(66, 50)
+        self.color_list.resize(200, 200)
         self.color_list.setStyleSheet(f"background-color: {self.active_theme['window_color']}; "
                                       f"border: {self.active_theme['border_color']};"
                                       f"font-size: {self.active_font_size}px")
         self.already_add_color_filter()
 
         self.add_color_filter_btn = QPushButton("Add", self)
-        self.add_color_filter_btn.move(300, 298)
-        self.add_color_filter_btn.resize(100, 20)
+        self.add_color_filter_btn.move(355, 200)
+        self.add_color_filter_btn.resize(150, 20)
         self.add_color_filter_btn.setStyleSheet(
             "QPushButton {color: "
             f"{self.active_theme['text_color']};"
@@ -186,7 +224,8 @@ class ColorFilter(QWidget):
         self.add_color_filter_btn.clicked.connect(self.add)
 
         self.color_btn = QPushButton("Color", self)
-        self.color_btn.move(200, 298)
+        self.color_btn.resize(150, 20)
+        self.color_btn.move(355, 120)
         self.color_btn.setStyleSheet(
             "QPushButton {color: "
             f"{self.active_theme['text_color']};"
@@ -196,10 +235,12 @@ class ColorFilter(QWidget):
         self.color_btn.clicked.connect(self.add_color)
 
         self.filter_input = QLineEdit(self)
-        self.filter_input.move(20, 300)
+        self.filter_input.resize(150, 20)
+        self.filter_input.move(355, 80)
         self.filter_input.setStyleSheet(f"background-color: {self.active_theme['window_color']}; "
                                         f"border: {self.active_theme['border_color']};"
-                                        f"font-size: {self.active_font_size}px")
+                                        f"font-size: {self.active_font_size}px;"
+                                        f"color: {self.active_theme['text_color']}")
         self.filter_input.setReadOnly(False)
 
     def already_add_color_filter(self):
@@ -218,7 +259,7 @@ class ColorFilter(QWidget):
             print(ex.dictionary_of_fraze)
             self.already_add_color_filter()
             # if ex.output_window.text() != "":
-            ex.open_log_file()
+            ex.open_log_file(True)
             self.filter_input.setText("")
 
 
@@ -238,22 +279,34 @@ class SettingMenu(QWidget):
         self.theme_setting.move(10, 10)
         self.theme_setting.resize(100, 50)
         self.theme_setting.setText("Theme")
-        self.theme_setting.setStyleSheet(f"color: {self.active_theme['text_color']}; font-size: 20px")
+        self.theme_setting.setStyleSheet(
+            f"color: {self.active_theme['text_color']}; font-size: {self.active_font_size}px")
 
         self.theme_choose = QComboBox(self)
         self.theme_choose.move(150, 30)
         self.theme_choose.resize(150, 20)
-        self.theme_choose.addItem("dark")
-        self.theme_choose.addItem("white")
-        self.theme_choose.addItem("green")
-        self.theme_choose.addItem("blue")
+        self.theme_choose.setStyleSheet(f"color: {self.active_theme['text_color']}")
+        self.add_theme_choose()
 
         self.theme_choose.activated[str].connect(self.update_theme)
+
+    def add_theme_choose(self):
+        theme_list = ["dark", "white", "green", "blue"]
+        self.theme_choose.addItem(CONFIG["theme"])
+        for theme in theme_list:
+            if theme != CONFIG["theme"]:
+                self.theme_choose.addItem(theme)
+
+        # self.theme_choose.addItem("dark")
+        # self.theme_choose.addItem("white")
+        # self.theme_choose.addItem("green")
+        # self.theme_choose.addItem("blue")
 
     def update_theme(self, theme):
         print(theme)
         cursor.execute(
-            f"""UPDATE config SET val='{theme}' WHERE cfg='theme'""")
+            f"""UPDATE config SET val = '{theme}' WHERE cfg = 'theme';""")
+        self.repaint()
 
 
 def import_config():
@@ -275,7 +328,8 @@ if __name__ == '__main__':
     CONFIG = import_config()
     app = QApplication(sys.argv)
     ex = Example()
-    ex.show()
+    cl = ColorFilter()
+    cl.show()
     sys.exit(app.exec())
 
 # def main():

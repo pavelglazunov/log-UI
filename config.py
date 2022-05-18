@@ -32,3 +32,5 @@ THEME = {
     }
 }
 
+ALREADY_ADD_COLOR = {}
+
