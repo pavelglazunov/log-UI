@@ -1,0 +1,110 @@
+2022-04-22 22:00:47,494 DEBUG root              
+2022-04-22 22:00:47,494 DEBUG discord.gateway Sending "{"op":3,"d":{"game":{"type":0,"name":"c\u043b\u0435\u0436\u043a\u0443 \u0437\u0430 \u0432\u0430\u043c\u0438 <3","timestamps":{}},"afk":false,"since":0.0,"status":"online"}}" to change status
+2022-04-22 22:00:47,494 DEBUG discord.client Dispatching event socket_raw_send
+2022-04-22 22:01:26,455 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 2.
+2022-04-22 22:01:26,831 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:01:26,831 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:01:26,859 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:01:40,837 INFO discord.client Received signal to terminate bot and event loop.
+2022-04-22 22:01:40,837 INFO discord.client Cleaning up tasks.
+2022-04-22 22:01:40,837 INFO discord.client Cleaning up after 2 tasks.
+2022-04-22 22:01:40,837 INFO discord.client All tasks finished cancelling.
+2022-04-22 22:01:40,837 INFO discord.client Closing the event loop.
+2022-04-22 22:01:49,207 DEBUG root              
+2022-04-22 22:01:49,208 DEBUG discord.gateway Sending "{"op":3,"d":{"game":{"type":0,"name":"c\u043b\u0435\u0436\u043a\u0443 \u0437\u0430 \u0432\u0430\u043c\u0438 <3","timestamps":{}},"afk":false,"since":0.0,"status":"online"}}" to change status
+2022-04-22 22:01:49,208 DEBUG discord.client Dispatching event socket_raw_send
+2022-04-22 22:02:28,044 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 2.
+2022-04-22 22:02:29,035 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:02:29,035 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:02:29,035 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:02:53,996 INFO discord.client Received signal to terminate bot and event loop.
+2022-04-22 22:02:53,996 INFO discord.client Cleaning up tasks.
+2022-04-22 22:02:53,996 INFO discord.client Cleaning up after 2 tasks.
+2022-04-22 22:02:53,996 INFO discord.client All tasks finished cancelling.
+2022-04-22 22:02:53,996 INFO discord.client Closing the event loop.
+2022-04-22 22:05:27,705 DEBUG root              
+2022-04-22 22:05:27,705 DEBUG discord.gateway Sending "{"op":3,"d":{"game":{"type":0,"name":"c\u043b\u0435\u0436\u043a\u0443 \u0437\u0430 \u0432\u0430\u043c\u0438 <3","timestamps":{}},"afk":false,"since":0.0,"status":"online"}}" to change status
+2022-04-22 22:05:27,705 DEBUG discord.client Dispatching event socket_raw_send
+2022-04-22 22:05:37,490 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:05:37,491 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': 'TYPING_START', 's': 3, 'op': 0, 'd': {'user_id': '582952714175119370', 'timestamp': 1650654335, 'member': {'user': {'username': 'l___l', 'id': '582952714175119370', 'discriminator': '4032', 'avatar': '4f5b38b998d5b0462fef155365dea49d'}, 'roles': ['886548930547048448', '946334117493092352', '932296897853542410', '934473418156425227', '937794882750267404', '934916735931400244', '894603275897286716', '926774526652608543'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2021-10-04T19:54:01.143000+00:00', 'hoisted_role': '894603275897286716', 'deaf': False, 'communication_disabled_until': '2022-01-28T23:30:44.199000+00:00', 'avatar': None}, 'channel_id': '942674540734087229', 'guild_id': '503489312705216512'}}
+2022-04-22 22:05:37,491 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:05:37,491 DEBUG discord.client Dispatching event typing
+2022-04-22 22:05:39,021 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:05:39,022 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 4, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2022-04-22T19:05:36.502000+00:00', 'referenced_message': None, 'pinned': False, 'nonce': '967139135133319168', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['886548930547048448', '946334117493092352', '932296897853542410', '934473418156425227', '937794882750267404', '934916735931400244', '894603275897286716', '926774526652608543'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2021-10-04T19:54:01.143000+00:00', 'hoisted_role': '894603275897286716', 'deaf': False, 'communication_disabled_until': '2022-01-28T23:30:44.199000+00:00', 'avatar': None}, 'id': '967139127206232154', 'flags': 0, 'embeds': [], 'edited_timestamp': None, 'content': 'test logs', 'components': [], 'channel_id': '942674540734087229', 'author': {'username': 'l___l', 'public_flags': 0, 'id': '582952714175119370', 'discriminator': '4032', 'avatar_decoration': None, 'avatar': '4f5b38b998d5b0462fef155365dea49d'}, 'attachments': [], 'guild_id': '503489312705216512'}}
+2022-04-22 22:05:39,023 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:05:39,023 DEBUG discord.client Dispatching event message
+2022-04-22 22:05:39,024 CRITICAL root abc         l___l#4032                    test logs
+2022-04-22 22:06:06,636 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 4.
+2022-04-22 22:06:07,046 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:06:07,046 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:06:07,046 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:06:47,890 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 4.
+2022-04-22 22:06:48,284 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:06:48,284 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:06:48,284 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:07:11,845 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:07:11,845 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': 'GUILD_MEMBER_UPDATE', 's': 5, 'op': 0, 'd': {'user': {'username': 'SK bot', 'public_flags': 0, 'id': '942161698708676619', 'discriminator': '1327', 'bot': True, 'avatar': 'a39d5e59f9d4ff6ad1f86e735f57fc03'}, 'roles': ['942502784102699008', '942162918936555633', '934916735931400244'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2022-02-12T20:59:04.487000+00:00', 'hoisted_role': '942502784102699008', 'guild_id': '503489312705216512', 'flags': 0, 'deaf': False, 'communication_disabled_until': None, 'avatar': None}}
+2022-04-22 22:07:11,845 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:07:11,845 DEBUG discord.client Dispatching event member_update
+2022-04-22 22:07:29,155 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:07:29,549 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:07:29,549 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:07:29,549 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:08:10,411 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:08:10,805 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:08:10,805 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:08:10,805 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:08:51,676 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:08:52,008 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:08:52,008 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:08:52,008 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:09:32,935 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:09:33,329 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:09:33,329 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:09:33,329 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:10:14,188 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:10:14,582 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:10:14,591 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:10:14,591 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:10:55,443 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:10:55,616 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:10:55,616 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:10:55,616 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:11:12,956 INFO discord.client Received signal to terminate bot and event loop.
+2022-04-22 22:11:12,956 INFO discord.client Cleaning up tasks.
+2022-04-22 22:11:12,956 INFO discord.client Cleaning up after 2 tasks.
+2022-04-22 22:11:12,956 INFO discord.client All tasks finished cancelling.
+2022-04-22 22:11:12,956 INFO discord.client Closing the event loop.
+2022-04-22 22:11:23,263 DEBUG root              
+2022-04-22 22:11:23,263 DEBUG discord.gateway Sending "{"op":3,"d":{"game":{"type":0,"name":"c\u043b\u0435\u0436\u043a\u0443 \u0437\u0430 \u0432\u0430\u043c\u0438 <3","timestamps":{}},"afk":false,"since":0.0,"status":"online"}}" to change status
+2022-04-22 22:11:23,263 DEBUG discord.client Dispatching event socket_raw_send
+2022-04-22 22:11:34,959 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:11:34,959 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': 'TYPING_START', 's': 4, 'op': 0, 'd': {'user_id': '582952714175119370', 'timestamp': 1650654692, 'member': {'user': {'username': 'l___l', 'id': '582952714175119370', 'discriminator': '4032', 'avatar': '4f5b38b998d5b0462fef155365dea49d'}, 'roles': ['886548930547048448', '946334117493092352', '932296897853542410', '934473418156425227', '937794882750267404', '934916735931400244', '894603275897286716', '926774526652608543'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2021-10-04T19:54:01.143000+00:00', 'hoisted_role': '894603275897286716', 'deaf': False, 'communication_disabled_until': '2022-01-28T23:30:44.199000+00:00', 'avatar': None}, 'channel_id': '942674540734087229', 'guild_id': '503489312705216512'}}
+2022-04-22 22:11:34,959 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:11:34,960 DEBUG discord.client Dispatching event typing
+2022-04-22 22:11:36,178 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:11:36,178 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 5, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2022-04-22T19:11:33.847000+00:00', 'referenced_message': None, 'pinned': False, 'nonce': '967140634068516864', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['886548930547048448', '946334117493092352', '932296897853542410', '934473418156425227', '937794882750267404', '934916735931400244', '894603275897286716', '926774526652608543'], 'premium_since': None, 'pending': False, 'nick': None, 'mute': False, 'joined_at': '2021-10-04T19:54:01.143000+00:00', 'hoisted_role': '894603275897286716', 'deaf': False, 'communication_disabled_until': '2022-01-28T23:30:44.199000+00:00', 'avatar': None}, 'id': '967140626019778580', 'flags': 0, 'embeds': [], 'edited_timestamp': None, 'content': 'test logs', 'components': [], 'channel_id': '942674540734087229', 'author': {'username': 'l___l', 'public_flags': 0, 'id': '582952714175119370', 'discriminator': '4032', 'avatar_decoration': None, 'avatar': '4f5b38b998d5b0462fef155365dea49d'}, 'attachments': [], 'guild_id': '503489312705216512'}}
+2022-04-22 22:11:36,178 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:11:36,179 DEBUG discord.client Dispatching event message
+2022-04-22 22:11:36,179 CRITICAL root abc лвтмлдтмлчьмладмчлдмлдсьмлчьмлдьмлчьмлчьмлчсь мючь l___l#4032                    test logs
+2022-04-22 22:12:01,891 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:12:02,474 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:12:02,474 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:12:02,474 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:12:43,160 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:12:43,617 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:12:43,617 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:12:43,617 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:13:24,425 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:13:24,645 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:13:24,661 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:13:24,661 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:14:05,685 DEBUG discord.gateway Keeping shard ID None websocket alive with sequence 5.
+2022-04-22 22:14:06,890 DEBUG discord.client Dispatching event socket_raw_receive
+2022-04-22 22:14:06,890 DEBUG discord.gateway For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2022-04-22 22:14:06,890 DEBUG discord.client Dispatching event socket_response
+2022-04-22 22:14:33,913 INFO discord.client Received signal to terminate bot and event loop.
+2022-04-22 22:14:33,913 INFO discord.client Cleaning up tasks.
+2022-04-22 22:14:33,913 INFO discord.client Cleaning up after 2 tasks.
+2022-04-22 22:14:33,913 INFO discord.client All tasks finished cancelling.
+2022-04-22 22:14:33,913 WARNING discord.client All tasks finished cancelling.

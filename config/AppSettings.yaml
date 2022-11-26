@@ -1,0 +1,11 @@
+active_theme: dark
+border_radius: 10
+font: Arial
+height: 900
+last_open_file: ''
+log_text_colors:
+  debug: '#000000'
+  info: '#FFFF00'
+  warning: '#ff0000'
+size: 30
+width: 1500

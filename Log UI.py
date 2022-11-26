@@ -6,31 +6,38 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-from sqlite3 import *
-from config import *
+# from sqlite3 import *
+# from config import *
 
-connect = sqlite3.connect("data_base.db")
-cursor = connect.cursor()
+from config.StyleConfig import Style, THEME, edit_style_config
 
 
 class Example(QWidget):
     def __init__(self):
-        super().__init__()
+        super().__init__(super(Example, self).__init__())
 
         # self.active_config = import_config()
-        console_log([CONFIG])
+        # console_log([CONFIG])
 
-        """SET CONFIG"""
-        self.active_size = CONFIG["screen_size"].split(", ")
-        self.active_theme = THEME[CONFIG["theme"]]
-        self.active_font_size = CONFIG["font_size"]
+        # """SET CONFIG"""
+        # self.active_size = CONFIG["screen_size"].split(", ")
+        # self.active_theme = THEME[CONFIG["theme"]]
+        # self.active_font_size = CONFIG["font_size"]
 
-        self.dictionary_of_fraze = {"INFO": "#FFFF00", "DEBUG": "#04FF00"}
-        self.fraze = ["INFO"]
+        # print(cursor.execute("""SELECT config_value FROM log_ui_config WHERE config_name='add_color'""").fetchone()[0])
 
-        self.setGeometry(0, 0, int(self.active_size[0]), int(self.active_size[1]))
+        # self.dictionary_of_fraze = {}
+        # open_fraze = \
+        #     cursor.execute("""SELECT config_value FROM log_ui_config WHERE config_name='add_color'""").fetchone()[0]
+        # open_fraze = open_fraze[1:-1].split(", ")
+        # for i in open_fraze:
+        #     self.dictionary_of_fraze[]
+
+        # self.fraze = ["INFO"]
+
+        self.setGeometry(0, 0, int(stl.window_width), int(stl.window_height))
         self.setWindowTitle('LOG ')
-        self.setStyleSheet(f"background-color: {self.active_theme['back_ground']}")
+        self.setStyleSheet(stl.bg)
 
         # self.hot_bar = QLabel(self)
         # self.hot_bar.move(0, 0)
@@ -40,66 +47,47 @@ class Example(QWidget):
 
         self.output_window = QTextEdit('', self)
         self.output_window.setGeometry(200, 60, 1000, 800)
-        self.output_window.setStyleSheet(f"background-color: {self.active_theme['window_color']}; "
-                                         f"border: {self.active_theme['border_color']};"
-                                         f"font-size: {self.active_font_size}px")
+        self.output_window.setStyleSheet(stl.window)
+
+        #  stl = Style()
+        #  self.output_window.setStyleSheet(stl.window)
         # self.output_window.setFontWeight(self.active_font_size)
-        self.output_window.setTextColor(QtGui.QColor(f"{self.active_theme['text_color']}"))
+        self.output_window.setTextColor(QtGui.QColor(stl.text_color))
+        self.output_window.setFont(QtGui.QFont(stl.font_style, stl.font_size))  # , QtGui.QFont.Bold
 
         self.count_log_window = QTextEdit('Info', self)
         self.count_log_window.move(1250, 200)
         self.count_log_window.resize(200, 400)
-        self.count_log_window.setStyleSheet(f"background-color: {self.active_theme['window_color']}; "
-                                            f"border: {self.active_theme['border_color']}")
-        self.count_log_window.setTextColor(QtGui.QColor(f"{self.active_theme['text_color']}"))
+        self.count_log_window.setStyleSheet(stl.window)
+        self.count_log_window.setTextColor(QtGui.QColor(stl.text_color))
 
         self.load_button_btn = QPushButton("Open", self)
         self.load_button_btn.move(0, 0)
         self.load_button_btn.resize(50, 50)
-        self.load_button_btn.setStyleSheet(
-            "QPushButton {color: "
-            f"{self.active_theme['text_color']};"
-            " border:  none} QPushButton::hover {background-color : "
-            f"{self.active_theme['button_color']};"
-            " border:  none}")
+        self.load_button_btn.setStyleSheet(stl.menu_btn)
         self.load_button_btn.clicked.connect(self.open_log_file)
 
         self.setting_btn = QPushButton("Setting", self)
         self.setting_btn.move(50, 0)
         self.setting_btn.resize(70, 50)
-        self.setting_btn.setStyleSheet(
-            "QPushButton {color: "
-            f"{self.active_theme['text_color']};"
-            " border:  none} QPushButton::hover {background-color : "
-            f"{self.active_theme['button_color']};"
-            " border:  none}")
+        self.setting_btn.setStyleSheet(stl.menu_btn)
         self.setting_btn.clicked.connect(self.open_setting)
 
         self.border = QLabel(self)
         self.border.resize(1500, 2)
         self.border.move(0, 50)
-        self.border.setStyleSheet(f"background-color: {self.active_theme['border_color']};")
+        self.border.setStyleSheet(stl.line)
 
         self.add_color_filter_btn = QPushButton("Add color filter", self)
         self.add_color_filter_btn.resize(100, 50)
         self.add_color_filter_btn.move(120, 0)
-        self.add_color_filter_btn.setStyleSheet(
-            "QPushButton {color: "
-            f"{self.active_theme['text_color']};"
-            " border:  none} QPushButton::hover {background-color : "
-            f"{self.active_theme['button_color']};"
-            " border:  none}")
+        self.add_color_filter_btn.setStyleSheet(stl.menu_btn)
         self.add_color_filter_btn.clicked.connect(self.add_color_filter)
 
         self.help_btn = QPushButton("Help", self)
         self.help_btn.resize(50, 50)
         self.help_btn.move(220, 0)
-        self.help_btn.setStyleSheet(
-            "QPushButton {color: "
-            f"{self.active_theme['text_color']};"
-            " border:  none} QPushButton::hover {background-color : "
-            f"{self.active_theme['button_color']};"
-            " border:  none}")
+        self.help_btn.setStyleSheet(stl.menu_btn)
         self.help_btn.clicked.connect(self.help_funck)
 
         self.search_menu = QLineEdit(self)
@@ -115,16 +103,16 @@ class Example(QWidget):
     def open_log_file(self, open_code=False):
         if not open_code:
             fname = QFileDialog.getOpenFileName(self, 'Выбрать файл', '')[0]
-            cursor.execute(f"""UPDATE config SET val='{fname}' WHERE cfg='already_open';""")
+            cursor.execute(f"""UPDATE log_ui_config SET config_value='{fname}' WHERE config_name='already_open';""")
             print("add")
         else:
-            fname = cursor.execute(f"""SELECT val FROM config WHERE cfg='already_open'""")
+            fname = cursor.execute(f"""SELECT config_value FROM log_ui_config WHERE config_name='already_open'""")
 
         # open_file = QFileDialog.getOpenFileName(self, 'Open file', '/home')
         # if not was_open:
         #
         #     print(fname)
-        #     cursor.execute(f"""UPDATE config SET val = '{fname}' WHERE cfg='already_open';""")
+        #     cursor.execute(f"""UPDATE config SET config_value = '{fname}' WHERE config_name='already_open';""")
         # else:
         if fname:
             self.output_window.clear()
@@ -165,29 +153,29 @@ class Example(QWidget):
 
 class ColorFilter(QWidget):
     def __init__(self):
-        super().__init__()
+        super(ColorFilter, self).__init__()
 
-        self.active_size = CONFIG["screen_size"].split(", ")
-        self.active_theme = THEME[CONFIG["theme"]]
-        self.active_font_size = CONFIG["font_size"]
+        # self.active_size = CONFIG["screen_size"].split(", ")
+        # self.active_theme = THEME[CONFIG["theme"]]
+        # self.active_font_size = CONFIG["font_size"]
 
         self.color = None
 
         self.resize(600, 400)
         self.setWindowTitle("Color filter")
-        self.setStyleSheet(f"background-color: {self.active_theme['back_ground']}")
+        self.setStyleSheet(stl.bg)
 
-        self.border0 = QLabel(self)
-        self.border0.move(65, 49)
-        self.border0.resize(202, 202)
-        self.border0.setStyleSheet(f"background-color: {self.active_theme['border_color']};")
-        self.border0.setStyleSheet(f"border: 1px solid {self.active_theme['border_color']};")
-
-        self.border1 = QLabel(self)
-        self.border1.move(330, 50)
-        self.border1.resize(200, 200)
-        self.border1.setStyleSheet(f"background: {self.active_theme['back_ground']};")
-        self.border1.setStyleSheet(f"border: 1px solid {self.active_theme['border_color']};")
+        # self.border0 = QLabel(self)
+        # self.border0.move(65, 49)
+        # self.border0.resize(202, 202)
+        # self.border0.setStyleSheet(stl.window)
+        # self.border0.setStyleSheet(stl.border)
+        #
+        # self.border1 = QLabel(self)
+        # self.border1.move(330, 50)
+        # self.border1.resize(200, 200)
+        # self.border1.setStyleSheet(stl.window)
+        # self.border1.setStyleSheet(stl.border)
 
         # self.border2 = QLabel(self)
         # self.border2.move(320, 50)
@@ -207,60 +195,58 @@ class ColorFilter(QWidget):
         self.color_list = QTextEdit(self)
         self.color_list.move(66, 50)
         self.color_list.resize(200, 200)
-        self.color_list.setStyleSheet(f"background-color: {self.active_theme['window_color']}; "
-                                      f"border: {self.active_theme['border_color']};"
-                                      f"font-size: {self.active_font_size}px")
+        self.color_list.setStyleSheet(stl.window_color)
+        self.color_list.setDisabled(True)
         self.already_add_color_filter()
 
         self.add_color_filter_btn = QPushButton("Add", self)
         self.add_color_filter_btn.move(355, 200)
         self.add_color_filter_btn.resize(150, 20)
-        self.add_color_filter_btn.setStyleSheet(
-            "QPushButton {color: "
-            f"{self.active_theme['text_color']};"
-            " border:  none} QPushButton::hover {background-color : "
-            f"{self.active_theme['button_color']};"
-            " border:  none}")
+        self.add_color_filter_btn.setStyleSheet(stl.add_menu_btn)
         self.add_color_filter_btn.clicked.connect(self.add)
 
         self.color_btn = QPushButton("Color", self)
         self.color_btn.resize(150, 20)
         self.color_btn.move(355, 120)
-        self.color_btn.setStyleSheet(
-            "QPushButton {color: "
-            f"{self.active_theme['text_color']};"
-            " border:  none} QPushButton::hover {background-color : "
-            f"{self.active_theme['button_color']};"
-            " border:  none}")
+        self.color_btn.setStyleSheet(stl.add_menu_btn)
         self.color_btn.clicked.connect(self.add_color)
+
+        self.view_color_lb = QLabel(self)
+        self.view_color_lb.move(355, 150)
+        self.view_color_lb.resize(150, 40)
+        self.view_color_lb.setStyleSheet("border-radius: 5px;")
+        self.view_color_lb.setStyleSheet(stl.window_color)
+        self.view_color_lb.setAlignment(Qt.AlignCenter)
 
         self.filter_input = QLineEdit(self)
         self.filter_input.resize(150, 20)
         self.filter_input.move(355, 80)
-        self.filter_input.setStyleSheet(f"background-color: {self.active_theme['window_color']}; "
-                                        f"border: {self.active_theme['border_color']};"
-                                        f"font-size: {self.active_font_size}px;"
-                                        f"color: {self.active_theme['text_color']}")
+        self.filter_input.setStyleSheet(stl.input_line)
+        self.filter_input.setPlaceholderText("Input log filter")
         self.filter_input.setReadOnly(False)
 
     def already_add_color_filter(self):
         self.color_list.clear()
-        for filter_name in ex.dictionary_of_fraze:
-            self.color_list.setTextColor(QtGui.QColor(ex.dictionary_of_fraze[filter_name]))
-            self.color_list.append(filter_name)
+        for i in stl.logs_word_colors:
+            self.color_list.setTextColor(QtGui.QColor(stl.logs_word_colors[i]))
+            self.color_list.append(str(i).upper())
 
     def add_color(self):
         self.color = QColorDialog.getColor().name()
+        self.view_color_lb.setText(self.filter_input.text())
+        self.view_color_lb.setStyleSheet("border-radius: 5px;")
+        # self.view_color_lb.setStyleSheet(stl.window_color)
+        self.view_color_lb.setStyleSheet(f"color: {self.color}; {stl.window_color}")
 
     def add(self):
-        if self.filter_input.text() != "":
-            print(self.filter_input.text())
-            ex.dictionary_of_fraze[self.filter_input.text()] = self.color
-            print(ex.dictionary_of_fraze)
-            self.already_add_color_filter()
-            # if ex.output_window.text() != "":
-            ex.open_log_file(True)
-            self.filter_input.setText("")
+        if not (text := self.filter_input.text()) or not self.color:
+            return
+
+        edit_style_config("log_text_colors", self.color, key=text.lower())
+        self.color = None
+        self.filter_input.setText("")
+        self.already_add_color_filter()
+
 
 
 class SettingMenu(QWidget):
@@ -305,14 +291,16 @@ class SettingMenu(QWidget):
     def update_theme(self, theme):
         print(theme)
         cursor.execute(
-            f"""UPDATE config SET val = '{theme}' WHERE cfg = 'theme';""")
+            f"""UPDATE log_ui_config SET config_value = '{theme}' WHERE config_name = 'theme';""")
         self.repaint()
 
 
 def import_config():
-    theme = cursor.execute(f"""SELECT val FROM config WHERE cfg='theme'""").fetchone()[0]
-    font_size = cursor.execute(f"""SELECT val FROM config WHERE cfg='font_size'""").fetchone()[0]
-    screen_size = cursor.execute(f"""SELECT val FROM config WHERE cfg='screen_size'""").fetchone()[0]
+    theme = cursor.execute(f"""SELECT config_value FROM log_ui_config WHERE config_name='theme'""").fetchone()[0]
+    font_size = cursor.execute(f"""SELECT config_value FROM log_ui_config WHERE config_name='font_size'""").fetchone()[
+        0]
+    screen_size = \
+        cursor.execute(f"""SELECT config_value FROM log_ui_config WHERE config_name='screen_size'""").fetchone()[0]
 
     return {"theme": theme,
             "font_size": font_size,
@@ -324,13 +312,27 @@ def console_log(logs):
         print(log)
 
 
+def add_db():
+    cursor.execute("""INSERT INTO log_ui_config (config_name, config_value) VALUES (123, 123)""")
+
+
 if __name__ == '__main__':
+    connect = sqlite3.connect("cash/data_base.db")
+    cursor = connect.cursor()
+    add_db()
     CONFIG = import_config()
+
+    stl = Style()
+
     app = QApplication(sys.argv)
-    ex = Example()
+    # ex = Example()
     cl = ColorFilter()
     cl.show()
+    # ex.show()
     sys.exit(app.exec())
+
+# print(4)
+# connect.close()
 
 # def main():
 #     app = QApplication(sys.argv)
