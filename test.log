@@ -108,5 +108,7 @@
 2022-04-22 22:14:33,913 INFO discord.client Cleaning up after 2 tasks.
 2022-04-22 22:14:33,913 INFO discord.client All tasks finished cancelling.
 2022-04-22 22:14:33,913 WARNING discord.client All tasks finished cancelling.
-test ERROR
-and test FATAL
+dfsdfsdmskldfmskldfmksfmks;dmfk.snfk.sg;ljjgkjcjkdsnsklc vsndfksnfmsjvksndvmsnvlkjsdnvj
+2022-04-22 22:14:33,913 WARNING discord.client received signal to terminate bot and event loop.
+2022-04-22 22:14:33,913 CRITICAL discord.client received signal to terminate bot and event loop.
+2022-04-22 22:14:33,913 FATAL discord.client received signal to terminate bot and event loop.

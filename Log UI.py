@@ -23,11 +23,43 @@ class LogWindow(QTextEdit):
         self.setStyleSheet(stl.window)
 
         for i in text.split("\n"):
-            for c in stl.logs_word_colors:
-                if c.lower() in i.lower().split():
-                    # print("color")
-                    self.setTextColor(QtGui.QColor(stl.logs_word_colors[c][0]))
-            self.append(i)
+            for word in i.lower().split():
+                if word in stl.logs_word_colors and stl.logs_word_colors[word][1]:
+                    # new_s = "<font color='{}'>{}</font>".format(stl.logs_word_colors[word], word)
+                    # self.insertHtml(new_s + "<br>")
+                    self.setTextColor(QtGui.QColor(stl.logs_word_colors[word][0]))
+                    self.append(i)
+                    self.setTextColor(QtGui.QColor(stl.text_color))
+                    break
+                if word in stl.logs_word_colors and not stl.logs_word_colors[word][1]:
+                    before, after = i.lower().split(word.lower())
+                    new_s = before + "<font color='{}'>{}</font>".format(stl.logs_word_colors[word][0], word.upper()) + after
+                    self.insertHtml("<br>" + new_s)
+                    print(new_s)
+                    break
+            else:
+                self.setTextColor(QtGui.QColor(stl.text_color))
+                self.append(i)
+
+
+            # for c in stl.logs_word_colors:
+            #     if c.lower() in i.lower().split():
+            #         if stl.logs_word_colors[c][1]:
+            #             # print("full")
+            #
+
+            #         else:
+            #             before, after = i.lower().split(c.lower())
+            #             new_s = before + "<font color='{}'>{}</font>".format(stl.logs_word_colors[c][0], c) + after
+            #             self.insertHtml(new_s)
+            #             break
+            # else:
+            #     self.setTextColor(QtGui.QColor(stl.text_color))
+            #     self.append(i)
+            # print(i)
+            # self.append("\n")
+            # self.append(i)
+
         # print(self.dictionary_of_fraze)
         #         for f in file:
         #             for name in self.dictionary_of_fraze:
@@ -292,6 +324,7 @@ class ColorFilter(QWidget):
             return
 
         edit_style_config("log_text_colors", [self.color, bool(self.full_highlight.checkState())], key=text.lower())
+        ex.open_files()
         self.clear_form()
 
     def delete_filter(self):

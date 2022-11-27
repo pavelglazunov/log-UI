@@ -6,7 +6,19 @@ class LogWindow(QTextEdit):
     def __init__(self, parent):
         super(LogWindow, self).__init__()
         # self.parent = parent
-        self.setText(parent)
+        # self.setText(parent)
+        # self.setText(self.toPlainText() + " 555")
+        # self.append("append")
+        # self.insertHtml("insert")
+        # self.insertHtml("\n")
+
+        self.append("append ")
+        self.insertHtml("insert ")
+        self.append("append ")
+        self.append("append ")
+        self.insertHtml("insert ")
+        self.insertHtml("insert ")
+
         # self.resize(1000, 800)
         # self.move(200, 60)
         # self.text_ed = QtWidgets.QTextEdit(self)
