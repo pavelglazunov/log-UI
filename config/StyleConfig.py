@@ -50,12 +50,25 @@ class Style:
     window = f"background-color: {theme['window_color']}; " \
              f"border: {theme['border_color']}; " \
              f"border-radius: {border_radius}px;" \
-             f"font-size: {font_style}px"
+             f"font-size: {font_style}px;" \
+             f"color: {theme['text_color']}"
     window_color = f"background-color: {theme['window_color']}; " \
                    f"border: {theme['border_color']}; " \
                    f"border: 1px solid {theme['border_color']};" \
                    f"border-radius: {border_radius - 5}px;" \
                    f"font-size: {font_size}px"
+
+    check_box = "QCheckBox {" \
+                f"color: {theme['text_color']};" \
+                "}" \
+                "QCheckBox::indicator {" \
+                f"border: 1px solid {theme['border_color']};" \
+                f"background-color: {theme['back_ground']};" \
+                "}" \
+                "QCheckBox::indicator:checked {" \
+                f"background-color: {theme['border_color']};" \
+                f"border-radius: 12px" \
+                "}"
 
     menu_btn = "QPushButton {color: " \
                f"{theme['text_color']};" \
@@ -71,6 +84,15 @@ class Style:
                    f"border-radius: {border_radius - 5}px;" \
                    " border:  none}"
 
+    warning_btn = "QPushButton {color: " \
+                  f"{theme['text_color']};" \
+                  f"border: 1px solid {theme['warning_color']};" \
+                  f"border-radius: {border_radius - 5}px;" \
+                  "} QPushButton::hover {background-color : " \
+                  f"{theme['warning_color']};" \
+                  f"border-radius: {border_radius - 5}px;" \
+                  " border:  none}"
+
     line = f"background-color: {theme['border_color']};"
     border = f"border: 1px solid {theme['border_color']};"
     input_line = f"background-color: {theme['window_color']}; " \
@@ -83,9 +105,21 @@ class Style:
     window_width = cfg["width"]
     window_height = cfg["height"]
 
+    def update(self):
+        Style.logs_word_colors = cfg.get("log_text_colors")
+
+
+class Config:
+    last_opened_files = cfg.get("last_open_file")
+
 
 def edit_style_config(param, value, key=None):
     if type(cfg[param]) == dict:
-        cfg[param][key] = value
-        with open('./config/AppSettings.yaml', "w") as f:
-            yaml.dump(cfg, f)
+
+        if key[0] == "-":
+            cfg[param].pop(key[1:])
+        else:
+            cfg[param][key] = value
+
+    with open('./config/AppSettings.yaml', "w") as f:
+        yaml.dump(cfg, f)

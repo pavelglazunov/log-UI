@@ -9,51 +9,94 @@ from PyQt5.QtCore import *
 # from sqlite3 import *
 # from config import *
 
-from config.StyleConfig import Style, THEME, edit_style_config
+from config.StyleConfig import Style, THEME, edit_style_config, Config
 
 
-class Example(QWidget):
+class LogWindow(QTextEdit):
+    def __init__(self, text):
+        super(LogWindow, self).__init__()
+        # self.text = text
+        # print(self.text)
+
+        self.resize(1000, 800)
+        self.move(200, 60)
+        self.setStyleSheet(stl.window)
+
+        for i in text.split("\n"):
+            for c in stl.logs_word_colors:
+                if c.lower() in i.lower().split():
+                    # print("color")
+                    self.setTextColor(QtGui.QColor(stl.logs_word_colors[c][0]))
+            self.append(i)
+        # print(self.dictionary_of_fraze)
+        #         for f in file:
+        #             for name in self.dictionary_of_fraze:
+        #                 if name in f.split():
+        #                     self.output_window.setTextColor(QtGui.QColor(self.dictionary_of_fraze[name]))
+        #
+        #                     break
+        #             else:
+        #                 self.output_window.setTextColor(QtGui.QColor("#FFFFFF"))
+        #             self.output_window.append(f)
+        # self.setText(text)
+
+        # self.opened_files_tab = QTextEdit(self)
+        # self.opened_files_tab.resize(1000, 800)
+        #
+        # self.output_window = QTextEdit('', self)
+        # self.output_window.setGeometry(200, 60, 1000, 800)
+        # self.output_window.setStyleSheet(stl.window)
+        # self.output_window.setTextColor(QtGui.QColor(stl.text_color))
+        # self.output_window.setFont(QtGui.QFont(stl.font_style, stl.font_size))
+
+
+class Example(QMainWindow):
     def __init__(self):
         super().__init__(super(Example, self).__init__())
 
-        # self.active_config = import_config()
-        # console_log([CONFIG])
+        self.file_tab = QTabWidget(self)
+        self.file_tab.move(200, 60)
+        self.file_tab.resize(1000, 800)
+        self.file_tab.setTabPosition(QTabWidget.TabPosition.South)
 
-        # """SET CONFIG"""
-        # self.active_size = CONFIG["screen_size"].split(", ")
-        # self.active_theme = THEME[CONFIG["theme"]]
-        # self.active_font_size = CONFIG["font_size"]
+        self.open_files()
 
-        # print(cursor.execute("""SELECT config_value FROM log_ui_config WHERE config_name='add_color'""").fetchone()[0])
+        # count = self.file_tab.count()
+        # print(count)
+        # index = self.tabWidget.count() - 1
+        # open_file_tab = LogWindow(self)
+        # self.file_tab.insertTab(count - 1, open_file_tab, f"Tab {count}")
+        # self.file_tab.setCurrentIndex(count)
 
-        # self.dictionary_of_fraze = {}
-        # open_fraze = \
-        #     cursor.execute("""SELECT config_value FROM log_ui_config WHERE config_name='add_color'""").fetchone()[0]
-        # open_fraze = open_fraze[1:-1].split(", ")
-        # for i in open_fraze:
-        #     self.dictionary_of_fraze[]
+        # self.centralwidget = QWidget(self)
+        # self.centralwidget.resize(1000, 800)
+        # self.centralwidget.move(200, 60)
+        # # self.setCentralWidget(self.centralwidget)
+        #
+        # self.tabWidget = QTabWidget(self)
+        # self.tabWidget.resize(1000, 800)
+        # self.tabWidget.move(200, 60)
+        # count = self.tabWidget.count()
+        # self.nb = QtWidgets.QToolButton(text="Добавить", autoRaise=True)
+        # self.nb.clicked.connect(self.new_tab)
+        # self.tabWidget.insertTab(count, QtWidgets.QWidget(), "")
+        # self.tabWidget.tabBar().setTabButton(
+        #     count, QtWidgets.QTabBar.RightSide, self.nb)
+        #
+        # self.new_tab()
 
-        # self.fraze = ["INFO"]
+        # self.layout = QtWidgets.QGridLayout(self.centralwidget)
+        # self.layout.addWidget(self.tabWidget)
 
         self.setGeometry(0, 0, int(stl.window_width), int(stl.window_height))
         self.setWindowTitle('LOG ')
         self.setStyleSheet(stl.bg)
 
-        # self.hot_bar = QLabel(self)
-        # self.hot_bar.move(0, 0)
-        # self.hot_bar.resize(1500, 50)
-        # self.hot_bar.setStyleSheet("background-color: #404050")
-        # self.hot_bar.setStyleSheet("border: #000000")
-
-        self.output_window = QTextEdit('', self)
-        self.output_window.setGeometry(200, 60, 1000, 800)
-        self.output_window.setStyleSheet(stl.window)
-
-        #  stl = Style()
-        #  self.output_window.setStyleSheet(stl.window)
-        # self.output_window.setFontWeight(self.active_font_size)
-        self.output_window.setTextColor(QtGui.QColor(stl.text_color))
-        self.output_window.setFont(QtGui.QFont(stl.font_style, stl.font_size))  # , QtGui.QFont.Bold
+        # self.output_window = QTextEdit('', self)
+        # self.output_window.setGeometry(200, 60, 1000, 800)
+        # self.output_window.setStyleSheet(stl.window)
+        # self.output_window.setTextColor(QtGui.QColor(stl.text_color))
+        # self.output_window.setFont(QtGui.QFont(stl.font_style, stl.font_size))  # , QtGui.QFont.Bold
 
         self.count_log_window = QTextEdit('Info', self)
         self.count_log_window.move(1250, 200)
@@ -98,38 +141,28 @@ class Example(QWidget):
         self.search_btn.resize(20, 20)
         self.search_btn.clicked.connect(self.search)
 
-        # self.open_log_file()
+    # def new_tab(self):
+    #     index = self.tabWidget.count() - 1
+    #     tabPage = LogWindow(self)
+    #     self.tabWidget.insertTab(index, tabPage, f"Tab {index}")
+    #     self.tabWidget.setCurrentIndex(index)
 
-    def open_log_file(self, open_code=False):
-        if not open_code:
-            fname = QFileDialog.getOpenFileName(self, 'Выбрать файл', '')[0]
-            cursor.execute(f"""UPDATE log_ui_config SET config_value='{fname}' WHERE config_name='already_open';""")
-            print("add")
-        else:
-            fname = cursor.execute(f"""SELECT config_value FROM log_ui_config WHERE config_name='already_open'""")
+    def open_files(self):
+        self.file_tab.clear()
+        already_opened = cfg.last_opened_files
+        for o in already_opened:
+            count = self.file_tab.count()
+            with open(o) as file:
+                open_file_tab = LogWindow(file.read())
+            self.file_tab.insertTab(count, open_file_tab, f"{file.name.split('/')[-1]}")
+            self.file_tab.setCurrentIndex(count)
 
-        # open_file = QFileDialog.getOpenFileName(self, 'Open file', '/home')
-        # if not was_open:
-        #
-        #     print(fname)
-        #     cursor.execute(f"""UPDATE config SET config_value = '{fname}' WHERE config_name='already_open';""")
-        # else:
-        if fname:
-            self.output_window.clear()
-            with open(fname) as file:
-                print(self.dictionary_of_fraze)
-                for f in file:
-                    for name in self.dictionary_of_fraze:
-                        if name in f.split():
-                            self.output_window.setTextColor(QtGui.QColor(self.dictionary_of_fraze[name]))
-
-                            break
-                    else:
-                        self.output_window.setTextColor(QtGui.QColor("#FFFFFF"))
-                    self.output_window.append(f)
-            # self.set_info()
-        else:
-            print(1)
+    def open_log_file(self):
+        open_file = QFileDialog.getOpenFileName(self, 'Выбрать файл', '')[0]
+        already_opened = cfg.last_opened_files
+        already_opened.append(open_file)
+        edit_style_config("last_open_file", already_opened)
+        self.open_files()
 
     def set_info(self):
         pass
@@ -155,42 +188,13 @@ class ColorFilter(QWidget):
     def __init__(self):
         super(ColorFilter, self).__init__()
 
-        # self.active_size = CONFIG["screen_size"].split(", ")
-        # self.active_theme = THEME[CONFIG["theme"]]
-        # self.active_font_size = CONFIG["font_size"]
-
         self.color = None
+
+        # layout = QGridLayout()
 
         self.resize(600, 400)
         self.setWindowTitle("Color filter")
         self.setStyleSheet(stl.bg)
-
-        # self.border0 = QLabel(self)
-        # self.border0.move(65, 49)
-        # self.border0.resize(202, 202)
-        # self.border0.setStyleSheet(stl.window)
-        # self.border0.setStyleSheet(stl.border)
-        #
-        # self.border1 = QLabel(self)
-        # self.border1.move(330, 50)
-        # self.border1.resize(200, 200)
-        # self.border1.setStyleSheet(stl.window)
-        # self.border1.setStyleSheet(stl.border)
-
-        # self.border2 = QLabel(self)
-        # self.border2.move(320, 50)
-        # self.border2.resize(2, 200)
-        # self.border2.setStyleSheet(f"background-color: {self.active_theme['border_color']};")
-        #
-        # self.border3 = QLabel(self)
-        # self.border3.move(320, 250)
-        # self.border3.resize(200, 2)
-        # self.border3.setStyleSheet(f"background-color: {self.active_theme['border_color']};")
-        #
-        # self.border4 = QLabel(self)
-        # self.border4.move(520, 50)
-        # self.border4.resize(2, 200)
-        # self.border4.setStyleSheet(f"background-color: {self.active_theme['border_color']};")
 
         self.color_list = QTextEdit(self)
         self.color_list.move(66, 50)
@@ -199,54 +203,105 @@ class ColorFilter(QWidget):
         self.color_list.setDisabled(True)
         self.already_add_color_filter()
 
-        self.add_color_filter_btn = QPushButton("Add", self)
-        self.add_color_filter_btn.move(355, 200)
-        self.add_color_filter_btn.resize(150, 20)
-        self.add_color_filter_btn.setStyleSheet(stl.add_menu_btn)
-        self.add_color_filter_btn.clicked.connect(self.add)
+        self.filter_input = QLineEdit(self)
+        self.filter_input.resize(150, 30)
+        self.filter_input.move(355, 50)
+        self.filter_input.setStyleSheet(stl.input_line)
+        self.filter_input.setPlaceholderText("Input log filter")
+        self.filter_input.setReadOnly(False)
 
         self.color_btn = QPushButton("Color", self)
-        self.color_btn.resize(150, 20)
-        self.color_btn.move(355, 120)
+        self.color_btn.resize(150, 25)
+        self.color_btn.move(355, 100)
         self.color_btn.setStyleSheet(stl.add_menu_btn)
         self.color_btn.clicked.connect(self.add_color)
 
         self.view_color_lb = QLabel(self)
-        self.view_color_lb.move(355, 150)
+        self.view_color_lb.move(355, 145)
         self.view_color_lb.resize(150, 40)
         self.view_color_lb.setStyleSheet("border-radius: 5px;")
         self.view_color_lb.setStyleSheet(stl.window_color)
         self.view_color_lb.setAlignment(Qt.AlignCenter)
 
-        self.filter_input = QLineEdit(self)
-        self.filter_input.resize(150, 20)
-        self.filter_input.move(355, 80)
-        self.filter_input.setStyleSheet(stl.input_line)
-        self.filter_input.setPlaceholderText("Input log filter")
-        self.filter_input.setReadOnly(False)
+        self.full_highlight = QCheckBox("Highlight full string", self)
+        self.full_highlight.move(355, 195)
+        self.full_highlight.setStyleSheet(stl.check_box)
+
+        self.add_color_filter_btn = QPushButton("Add", self)
+        self.add_color_filter_btn.move(355, 225)
+        self.add_color_filter_btn.resize(150, 25)
+        self.add_color_filter_btn.setStyleSheet(stl.add_menu_btn)
+        self.add_color_filter_btn.clicked.connect(self.add)
+
+        self.ok_btn = QPushButton("Ok", self)
+        self.ok_btn.resize(70, 20)
+        self.ok_btn.move(520, 370)
+        self.ok_btn.setStyleSheet(stl.add_menu_btn)
+        self.ok_btn.clicked.connect(self.close_add_window)
+
+        self.delete_filter_input = QLineEdit(self)
+        self.delete_filter_input.resize(200, 30)
+        self.delete_filter_input.move(66, 300)
+        self.delete_filter_input.setStyleSheet(stl.input_line)
+        self.delete_filter_input.setPlaceholderText("Input log filter for delete")
+        self.delete_filter_input.setReadOnly(False)
+
+        self.delete_filter_btn = QPushButton("DELETE", self)
+        self.delete_filter_btn.move(66, 340)
+        self.delete_filter_btn.resize(200, 25)
+        self.delete_filter_btn.setStyleSheet(stl.warning_btn)
+        self.delete_filter_btn.clicked.connect(self.delete_filter)
+
+        # layout.addWidget(self.color_list)
+        # layout.addWidget(self.filter_input)
+        # layout.addWidget(self.color_btn)
+        # layout.addWidget(self.view_color_lb)
+        # layout.addWidget(self.full_highlight)
+        # layout.addWidget(self.add_color_filter_btn)
+        # layout.addWidget(self.ok_btn)
+        # layout.addWidget(self.delete_filter_btn)
+        # layout.addWidget(self.delete_filter_input)
+        #
+        # self.setLayout(layout)
+
+    def clear_form(self):
+        self.color = None
+
+        self.delete_filter_input.setText("")
+        self.filter_input.setText("")
+        self.view_color_lb.setText("")
+        self.full_highlight.setChecked(False)
+
+        self.already_add_color_filter()
 
     def already_add_color_filter(self):
+        stl.update()
         self.color_list.clear()
-        for i in stl.logs_word_colors:
-            self.color_list.setTextColor(QtGui.QColor(stl.logs_word_colors[i]))
-            self.color_list.append(str(i).upper())
+        for k, v in [[i, j] for i, j in stl.logs_word_colors.items() if j]:
+            self.color_list.setTextColor(QtGui.QColor(v[0]))
+            self.color_list.append(str(k).upper() + str(" - full" * v[1]))
 
     def add_color(self):
         self.color = QColorDialog.getColor().name()
         self.view_color_lb.setText(self.filter_input.text())
         self.view_color_lb.setStyleSheet("border-radius: 5px;")
-        # self.view_color_lb.setStyleSheet(stl.window_color)
         self.view_color_lb.setStyleSheet(f"color: {self.color}; {stl.window_color}")
 
     def add(self):
-        if not (text := self.filter_input.text()) or not self.color:
+        if not (text := " ".join(self.filter_input.text().split())) or not self.color:
             return
 
-        edit_style_config("log_text_colors", self.color, key=text.lower())
-        self.color = None
-        self.filter_input.setText("")
-        self.already_add_color_filter()
+        edit_style_config("log_text_colors", [self.color, bool(self.full_highlight.checkState())], key=text.lower())
+        self.clear_form()
 
+    def delete_filter(self):
+        filter_text = " ".join(self.delete_filter_input.text().split())
+        if filter_text in stl.logs_word_colors:
+            edit_style_config("log_text_colors", None, key=f"-{filter_text}")
+            self.clear_form()
+
+    def close_add_window(self):
+        self.close()
 
 
 class SettingMenu(QWidget):
@@ -323,12 +378,13 @@ if __name__ == '__main__':
     CONFIG = import_config()
 
     stl = Style()
+    cfg = Config()
 
     app = QApplication(sys.argv)
-    # ex = Example()
-    cl = ColorFilter()
-    cl.show()
-    # ex.show()
+    ex = Example()
+    # cl = ColorFilter()
+    # cl.show()
+    ex.show()
     sys.exit(app.exec())
 
 # print(4)

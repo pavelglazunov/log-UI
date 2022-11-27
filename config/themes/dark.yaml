@@ -3,3 +3,5 @@
 "text_color": "#FFFFFF"
 "button_color": "#FA5539"
 "border_color": "#FA5539"
+"warning_color": "#ff0000"
+"checked_color" : "#FF3C39"

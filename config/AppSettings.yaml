@@ -2,10 +2,25 @@ active_theme: dark
 border_radius: 10
 font: Arial
 height: 900
-last_open_file: ''
+last_open_file:
+- C:/Users/HP/Desktop/my project/UI++/Log GUI/Log UI.py
+- C:/Users/HP/Desktop/my project/UI++/Log GUI/test.log
+- C:/Users/HP/Desktop/my project/UI++/Log GUI/test.log
 log_text_colors:
-  debug: '#000000'
-  info: '#FFFF00'
-  warning: '#ff0000'
-size: 30
+  debug:
+  - '#00bc65'
+  - false
+  error:
+  - '#ff7000'
+  - true
+  fatal:
+  - '#bc111f'
+  - false
+  info:
+  - '#009ce8'
+  - false
+  warning:
+  - '#ffb842'
+  - false
+size: 14
 width: 1500
